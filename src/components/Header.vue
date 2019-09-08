@@ -21,7 +21,7 @@
           <button class="nav-link link-btn" @click="endDay">End Day</button>
         </li>
         <li class="mr-3">
-          <div class="nav-item dropdown">
+          <div class="nav-item dropdown show">
             <a
               class="nav-link dropdown-toggle"
               href="#"
@@ -30,12 +30,13 @@
               data-toggle="dropdown"
               aria-haspopup="true"
               aria-expanded="false"
+              @click="toggleDropDown"
             >
               Save / Load
               <span class="caret"></span>
             </a>
 
-            <div class="dropdown-menu">
+            <div :class="[{ show: isDropdownOpen }, 'dropdown-menu']">
               <a class="dropdown-item" href="#">Save Data</a>
               <a class="dropdown-item" href="#">Load Data</a>
             </div>
@@ -54,6 +55,11 @@
 import { mapActions } from "vuex";
 
 export default {
+  data() {
+    return {
+      isDropdownOpen: false
+    };
+  },
   computed: {
     funds() {
       return this.$store.getters.funds;
@@ -63,6 +69,9 @@ export default {
     ...mapActions(["randomizeStocks"]),
     endDay() {
       this.randomizeStocks();
+    },
+    toggleDropDown() {
+      this.isDropdownOpen = !this.isDropdownOpen;
     }
   }
 };
