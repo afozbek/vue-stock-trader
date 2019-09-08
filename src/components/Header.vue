@@ -15,11 +15,12 @@
           >
         </li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li>
+
+      <ul class="navbar-nav">
+        <li class="mr-3">
           <router-link class="nav-link" to>End Day</router-link>
         </li>
-        <li>
+        <li class="mr-3">
           <div class="nav-item dropdown">
             <a
               class="nav-link dropdown-toggle"
@@ -41,12 +42,22 @@
           </div>
         </li>
       </ul>
+      <strong class="navbar-text navbar-right">
+        Funds:
+        <span class="text-secondary">{{ funds }}</span>
+      </strong>
     </div>
   </nav>
 </template>
 
 <script>
-export default {};
+export default {
+  computed: {
+    funds() {
+      return this.$store.getters.funds;
+    }
+  }
+};
 </script>
 
 <style></style>
