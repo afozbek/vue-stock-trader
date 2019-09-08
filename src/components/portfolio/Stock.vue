@@ -1,9 +1,60 @@
 <template>
-  <h1>Portfolio/Stock Component</h1>
+  <div class="col-xl-4 col-sm-6 col-12">
+    <div class="card mt-3 border-success">
+      <div class="card-header text-white bg-success">
+        <h4 class="card-title">
+          {{ stock.name }}
+          <small
+            >(Price: {{ stock.price }} | Quantity: {{ stock.quantity }})</small
+          >
+        </h4>
+      </div>
+      <div class="card-body">
+        <div class="float-left">
+          <input
+            type="number"
+            class="form-control"
+            placeholder="Quantity"
+            v-model="quantity"
+          />
+        </div>
+        <div class="float-right">
+          <button
+            class="btn btn-success"
+            @click="sellStock"
+            :disabled="controlButton"
+          >
+            Sell
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-export default {};
-</script>
+export default {
+  props: ["stock"],
+  data() {
+    return {
+      quantity: 0
+    };
+  },
+  methods: {
+    sellStock() {
+      const order = {
+        stockId: this.stock.id,
+        stockPrice: this.stock.price,
+        quantity: +this.quantity
+      };
 
-<style></style>
+      this.$store.dispatch("sellStock", order);
+    }
+  },
+  computed: {
+    controlButton() {
+      return this.quantity <= 0 || !Number.isInteger(+this.quantity);
+    }
+  }
+};
+</script>
