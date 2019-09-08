@@ -13,6 +13,7 @@
             type="number"
             class="form-control"
             placeholder="Quantity"
+            :class="{ 'border-danger': controlButton }"
             v-model="quantity"
           />
         </div>
@@ -22,7 +23,13 @@
             @click="buyStock"
             :disabled="controlButton"
           >
-            Buy
+            {{
+              canBuyStock
+                ? "Poor Guy 😥"
+                : controlButton
+                ? "Please Enter Count 😅"
+                : "Buy It Now 😎"
+            }}
           </button>
         </div>
       </div>
@@ -52,8 +59,15 @@ export default {
     }
   },
   computed: {
+    canBuyStock() {
+      return this.quantity * this.stock.price > this.$store.getters.funds;
+    },
     controlButton() {
-      return this.quantity <= 0 || !Number.isInteger(+this.quantity);
+      return (
+        this.quantity <= 0 ||
+        !Number.isInteger(+this.quantity) ||
+        this.canBuyStock
+      );
     }
   }
 };
