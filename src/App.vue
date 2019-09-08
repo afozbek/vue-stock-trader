@@ -1,10 +1,8 @@
 <template>
   <div class="container">
     <app-header></app-header>
-    <div class="row mt-5">
-      <div class="col-xs-12">
-        <router-view></router-view>
-      </div>
+    <div class="row">
+      <router-view></router-view>
     </div>
   </div>
 </template>
