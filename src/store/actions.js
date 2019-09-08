@@ -4,11 +4,11 @@ export const loadData = async ({ commit }) => {
   try {
     const data = await axios.get("/data.json");
     if (data) {
-      const { stocks, funds, stockPortfolio } = data;
+      const { stocks, funds, stockPortfolio } = data.data;
 
       const portfolio = {
-        stockPortfolio,
-        funds
+        funds,
+        stockPortfolio
       };
 
       commit("SET_STOCKS", stocks);
