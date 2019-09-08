@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   props: ["stock"],
   data() {
@@ -41,6 +42,9 @@ export default {
     };
   },
   methods: {
+    ...mapActions({
+      sellSelectedStock: "sellStock"
+    }),
     sellStock() {
       const order = {
         stockId: this.stock.id,
@@ -48,7 +52,9 @@ export default {
         quantity: +this.quantity
       };
 
-      this.$store.dispatch("sellStock", order);
+      this.sellSelectedStock(order);
+
+      this.quantity = 0;
     }
   },
   computed: {
