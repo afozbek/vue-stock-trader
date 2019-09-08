@@ -37,8 +37,8 @@
             </a>
 
             <div :class="[{ show: isDropdownOpen }, 'dropdown-menu']">
-              <a class="dropdown-item" href="#">Save Data</a>
-              <a class="dropdown-item" href="#">Load Data</a>
+              <a class="dropdown-item" href="#" @click="saveData">Save Data</a>
+              <a class="dropdown-item" href="#" @click="loadData">Load Data</a>
             </div>
           </div>
         </li>
@@ -53,6 +53,8 @@
 
 <script>
 import { mapActions } from "vuex";
+
+import axios from "../axios-instance";
 
 export default {
   data() {
@@ -72,7 +74,22 @@ export default {
     },
     toggleDropDown() {
       this.isDropdownOpen = !this.isDropdownOpen;
-    }
+    },
+    async saveData() {
+      const data = {
+        funds: this.$store.getters.funds,
+        stockPortfolio: this.$store.getters.stockPortfolio,
+        stocks: this.$store.getters.stocks
+      };
+
+      try {
+        const result = await axios.put("/data.json", data);
+        console.log("TCL: saveData -> result", result);
+      } catch (err) {
+        console.log("Axios failed", err);
+      }
+    },
+    async loadData() {}
   }
 };
 </script>
