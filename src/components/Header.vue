@@ -44,7 +44,7 @@
       </ul>
       <strong class="navbar-text navbar-right">
         Funds:
-        <span class="text-secondary">{{ funds }}</span>
+        <span class="text-secondary">{{ funds | currency }}</span>
       </strong>
     </div>
   </nav>
