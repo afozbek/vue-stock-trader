@@ -59,7 +59,11 @@ export default {
   },
   computed: {
     controlButton() {
-      return this.quantity <= 0 || !Number.isInteger(+this.quantity);
+      return (
+        this.quantity <= 0 ||
+        !Number.isInteger(+this.quantity) ||
+        this.quantity > this.stock.quantity
+      );
     }
   }
 };
