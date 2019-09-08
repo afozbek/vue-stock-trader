@@ -13,6 +13,9 @@ import HeaderVue from "./components/Header.vue";
 export default {
   components: {
     appHeader: HeaderVue
+  },
+  created() {
+    this.$store.dispatch("initStocks");
   }
 };
 </script>
