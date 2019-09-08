@@ -3,8 +3,7 @@
     <app-stock
       v-for="stock in stocks"
       :key="stock.id"
-      :name="stock.name"
-      :price="stock.price"
+      :stock="stock"
     ></app-stock>
   </vue-fragment>
 </template>
