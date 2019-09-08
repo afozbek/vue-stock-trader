@@ -8,6 +8,7 @@ import Stocks from "./components/stocks/Stocks.vue";
 Vue.use(Router);
 
 export default new Router({
+  mode: "history",
   routes: [
     {
       path: "/",
@@ -21,6 +22,7 @@ export default new Router({
     },
     {
       path: "/stocks",
+      name: "stocks",
       component: Stocks
     }
   ]
