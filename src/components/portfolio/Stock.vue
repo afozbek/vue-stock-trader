@@ -1,7 +1,7 @@
 <template>
   <div class="col-xl-4 col-sm-6 col-12">
-    <div class="card mt-3 border-success">
-      <div class="card-header text-white bg-success">
+    <div class="card mt-3 border-info">
+      <div class="card-header text-white bg-info">
         <h4 class="card-title">
           {{ stock.name }}
           <small
