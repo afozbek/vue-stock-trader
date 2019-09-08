@@ -3,7 +3,7 @@
     <app-stock
       v-for="stock in stocks"
       :stock="stock"
-      :key="stock.id"
+      :key="stock.stockId"
     ></app-stock>
   </div>
 </template>
