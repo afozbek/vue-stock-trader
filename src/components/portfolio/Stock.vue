@@ -13,7 +13,7 @@
         <div class="float-left">
           <input
             type="number"
-            class="form-control"
+            :class="[{ 'border-danger': controlButton }, 'form-control']"
             placeholder="Quantity"
             v-model="quantity"
           />
@@ -24,7 +24,13 @@
             @click="sellStock"
             :disabled="controlButton"
           >
-            Sell
+            {{
+              !canSellStock
+                ? "Poor Guy 😥"
+                : controlButton
+                ? "👈 Enter Count 😅"
+                : "Sell It Now 😎"
+            }}
           </button>
         </div>
       </div>
@@ -36,6 +42,7 @@
 import { mapActions } from "vuex";
 export default {
   props: ["stock"],
+
   data() {
     return {
       quantity: 0
@@ -58,11 +65,14 @@ export default {
     }
   },
   computed: {
+    canSellStock() {
+      return this.quantity <= this.stock.quantity;
+    },
     controlButton() {
       return (
         this.quantity <= 0 ||
         !Number.isInteger(+this.quantity) ||
-        this.quantity > this.stock.quantity
+        !this.canSellStock
       );
     }
   }

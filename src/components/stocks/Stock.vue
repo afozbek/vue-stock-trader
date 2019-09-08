@@ -24,10 +24,10 @@
             :disabled="controlButton"
           >
             {{
-              canBuyStock
+              !canBuyStock
                 ? "Poor Guy 😥"
                 : controlButton
-                ? "Please Enter Count 😅"
+                ? "👈 Enter Count 😅"
                 : "Buy It Now 😎"
             }}
           </button>
@@ -60,13 +60,13 @@ export default {
   },
   computed: {
     canBuyStock() {
-      return this.quantity * this.stock.price > this.$store.getters.funds;
+      return this.quantity * this.stock.price < this.$store.getters.funds;
     },
     controlButton() {
       return (
         this.quantity <= 0 ||
         !Number.isInteger(+this.quantity) ||
-        this.canBuyStock
+        !this.canBuyStock
       );
     }
   }
