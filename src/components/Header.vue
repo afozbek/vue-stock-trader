@@ -89,7 +89,7 @@ export default {
         console.log("Axios failed", err);
       }
     },
-    async loadData() {}
+    loadData() {}
   }
 };
 </script>
