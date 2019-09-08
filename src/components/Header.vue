@@ -68,7 +68,10 @@ export default {
     }
   },
   methods: {
-    ...mapActions(["randomizeStocks"]),
+    ...mapActions({
+      randomizeStocks: "randomizeStocks",
+      fetchData: "loadData"
+    }),
     endDay() {
       this.randomizeStocks();
     },
@@ -83,13 +86,14 @@ export default {
       };
 
       try {
-        const result = await axios.put("/data.json", data);
-        console.log("TCL: saveData -> result", result);
+        await axios.put("/data.json", data);
       } catch (err) {
         console.log("Axios failed", err);
       }
     },
-    loadData() {}
+    loadData() {
+      this.fetchData();
+    }
   }
 };
 </script>
