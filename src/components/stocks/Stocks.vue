@@ -1,16 +1,15 @@
 <template>
-  <vue-fragment>
+  <div class="row">
     <app-stock
       v-for="stock in stocks"
       :key="stock.id"
       :stock="stock"
     ></app-stock>
-  </vue-fragment>
+  </div>
 </template>
 
 <script>
 import Stock from "./Stock.vue";
-import { Fragment } from "vue-fragment";
 import { mapGetters } from "vuex";
 
 export default {
@@ -18,8 +17,7 @@ export default {
     ...mapGetters(["stocks"])
   },
   components: {
-    appStock: Stock,
-    vueFragment: Fragment
+    appStock: Stock
   }
 };
 </script>
