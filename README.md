@@ -1,5 +1,3 @@
-Temporary Comment
-
 # vue-stock-trader
 
 ## Project setup
